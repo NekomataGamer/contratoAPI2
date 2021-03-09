@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.0.2
+-- version 5.0.3
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 05-Mar-2021 às 20:40
--- Versão do servidor: 10.4.13-MariaDB
--- versão do PHP: 7.4.8
+-- Tempo de geração: 09-Mar-2021 às 18:31
+-- Versão do servidor: 10.4.14-MariaDB
+-- versão do PHP: 7.4.11
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -101,13 +101,13 @@ CREATE TABLE `cursos` (
   `id_coordenador_estagio` int(11) NOT NULL DEFAULT 0,
   `nome_curso` varchar(250) NOT NULL DEFAULT '0',
   `abrev` varchar(50) NOT NULL DEFAULT '0',
-  `aera` int(11) NOT NULL DEFAULT 0,
+  `area` int(11) NOT NULL DEFAULT 0,
   `curso_no_doc` varchar(250) NOT NULL DEFAULT '0',
   `cod_inep` varchar(250) NOT NULL DEFAULT '0',
   `cod_mod_inep` varchar(250) NOT NULL DEFAULT '0',
   `cod_polo_ed_dist` varchar(250) NOT NULL DEFAULT '0',
   `grade_unica` varchar(3) NOT NULL DEFAULT '0',
-  `grade_unica_execao` varchar(3) NOT NULL DEFAULT '0',
+  `grade_unica_excecao` varchar(3) NOT NULL DEFAULT '0',
   `educacao_distancia` varchar(3) NOT NULL DEFAULT '0',
   `titulo` varchar(250) NOT NULL DEFAULT '0',
   `titulacao` varchar(250) NOT NULL DEFAULT '0',
@@ -137,8 +137,16 @@ CREATE TABLE `cursos` (
   `abrev_ch_anual` varchar(250) NOT NULL DEFAULT '0',
   `id_curso_equivalencia` int(11) NOT NULL DEFAULT 0,
   `observacao_historico` text NOT NULL DEFAULT '0',
-  `periodo_letivo_encerrado` varchar(3) NOT NULL DEFAULT '0'
+  `periodo_letivo_encerrado` varchar(3) NOT NULL DEFAULT '0',
+  `desbloq_prof_ano_let_1` varchar(3) NOT NULL DEFAULT '0'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Extraindo dados da tabela `cursos`
+--
+
+INSERT INTO `cursos` (`id`, `id_coordenador`, `id_coordenador_estagio`, `nome_curso`, `abrev`, `area`, `curso_no_doc`, `cod_inep`, `cod_mod_inep`, `cod_polo_ed_dist`, `grade_unica`, `grade_unica_excecao`, `educacao_distancia`, `titulo`, `titulacao`, `eixo_tecnologico`, `area_conhecimento`, `area_concentracao`, `habilitacao`, `autorizacao`, `reconhecimento`, `renovacao_conhecimento`, `amparo_legal`, `perfil_profissional`, `observacao`, `link_matricula`, `link_matricula_online`, `prefixo_curso`, `mostrar_faltas`, `separar_carg_hor_pratica`, `separar_carg_hor_dispensa`, `mostrar_ano_semestre`, `mostrar_titulo_periodo`, `substituir_dispensa_aproveitamento`, `substituir_pendente_acursar`, `nome_ch`, `abrev_ch`, `nome_ch_anual`, `abrev_ch_anual`, `id_curso_equivalencia`, `observacao_historico`, `periodo_letivo_encerrado`, `desbloq_prof_ano_let_1`) VALUES
+(1, 0, 0, 'Alison Bucker', 'Ninteressa', 0, 'dfagdfa', 'gdfgadf', 'adfgadf', 'adfgdfag', '1', '1', '1', 'adfg', 'adfg', 'adfg', 'adfg', 'adfg', 'afdg', 'afdg', 'afdg', 'adfg', 'afdg', 'afdg', 'adfg', '0', '0', '', '1', '1', '1', '1', '1', '1', '1', 'adfg', 'afdg', 'adfg', 'adfg', 0, 'adfg', '1', '1');
 
 -- --------------------------------------------------------
 
@@ -243,7 +251,7 @@ ALTER TABLE `companies`
 -- AUTO_INCREMENT de tabela `cursos`
 --
 ALTER TABLE `cursos`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT de tabela `master`

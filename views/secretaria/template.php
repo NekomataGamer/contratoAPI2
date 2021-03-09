@@ -10,7 +10,7 @@
         <!-- The above 6 meta tags *must* come first in the head; any other head content must come *after* these tags -->
         
         <!-- Title -->
-        <title>Connect - Responsive Admin Dashboard Template</title>
+        <title><?php echo $viewData['title'];?> | Secretaria</title>
 
         <!-- Styles -->
         <link href="https://fonts.googleapis.com/css?family=Lato:400,700,900&display=swap" rel="stylesheet">
@@ -18,7 +18,7 @@
         <link href="https://fonts.googleapis.com/css?family=Material+Icons|Material+Icons+Outlined|Material+Icons+Two+Tone|Material+Icons+Round|Material+Icons+Sharp" rel="stylesheet">
         <link href="<?php echo BASE_URL;?>assets/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet">
         <link href="<?php echo BASE_URL;?>assets/plugins/font-awesome/css/all.min.css" rel="stylesheet">
-
+        <link href="<?php echo BASE_URL;?>assets/plugins/DataTables/datatables.min.css" rel="stylesheet">
       
         <!-- Theme Styles -->
         <link href="<?php echo BASE_URL;?>assets/css/connect.min.css" rel="stylesheet">
@@ -40,16 +40,16 @@
         </div>
         <div class="connect-container align-content-stretch d-flex flex-wrap">
             <div class="page-sidebar">
-                <div class="logo-box"><a href="#" class="logo-text">Connect</a><a href="#" id="sidebar-close"><i class="material-icons">close</i></a> <a href="#" id="sidebar-state"><i class="material-icons">adjust</i><i class="material-icons compact-sidebar-icon">panorama_fish_eye</i></a></div>
+                <div class="logo-box"><a href="<?php echo BASE_URL.'secretaria/';?>" class="logo-text"><img src="<?php echo BASE_URL.'assets/images/logo-silver.png';?>" style="margin: 0;width: 150px;" alt=""></a><a href="#" id="sidebar-close"><i class="material-icons">close</i></a> <a href="#" id="sidebar-state"><i class="material-icons">adjust</i><i class="material-icons compact-sidebar-icon">panorama_fish_eye</i></a></div>
                 <div class="page-sidebar-inner slimscroll">
-                    <ul class="accordion-menu">
+                <ul class="accordion-menu" >
                         <li class="sidebar-title">
                             Apps
                         </li>
                         <li class="active-page">
-                            <a href="index.html" class="active"><i class="material-icons-outlined">dashboard</i>Dashboard</a>
+                            <a href="<?php echo BASE_URL.'secretaria/';?>" class="active"><i class="material-icons-outlined">dashboard</i>Dashboard</a>
                         </li>
-                        <li>
+                        <!-- <li>
                             <a href="mailbox.html"><i class="material-icons-outlined">inbox</i>Mailbox</a>
                         </li>
                         <li>
@@ -63,130 +63,207 @@
                         </li>
                         <li>
                             <a href="todo.html"><i class="material-icons">done</i>Todo</a>
-                        </li>
+                        </li> -->
                         <li class="sidebar-title">
-                            UI Elements
+                            Menu
                         </li>
                         <li>
-                            <a href="#"><i class="material-icons">text_format</i>Styles<i class="material-icons has-sub-menu">add</i></a>
+                            <a href="#"><i class="material-icons">text_format</i>Cursos<i class="material-icons has-sub-menu">add</i></a>
                             <ul class="sub-menu">
                                 <li>
-                                    <a href="styles-typography.html">Typography</a>
+                                    <a href="<?php echo BASE_URL.'secretaria/verCursos';?>">Ver Cursos</a>
                                 </li>
                                 <li>
-                                    <a href="styles-code.html">Code</a>
+                                    <a href="">Ver Diciplinas</a>
                                 </li>
-                                <li>
-                                    <a href="styles-tables.html">Tables</a>
+                                <!-- <li>
+                                    <a href="styles-tables.html">Cadastro de Turmas</a>
                                 </li>
                                 <li>
                                     <a href="styles-icons.html">Icons</a>
-                                </li>
+                                </li> -->
                             </ul>
                         </li>
+
+                        <!-- <li class="sidebar-title">
+                            Alunos
+                        </li> -->
                         <li>
-                            <a href=""><i class="material-icons">apps</i>Components<i class="material-icons has-sub-menu">add</i></a>
+                            <a href="#"><i class="material-icons">text_format</i>Alunos<i class="material-icons has-sub-menu">add</i></a>
                             <ul class="sub-menu">
                                 <li>
-                                    <a href="ui-alerts.html">Alerts</a>
+                                    <a href="">Cadastrar Aluno</a>
                                 </li>
                                 <li>
-                                    <a href="ui-badge.html">Badge</a>
-                                </li>
-                                <li>
-                                    <a href="ui-breadcrumb.html">Breadcrumb</a>
-                                </li>
-                                <li>
-                                    <a href="ui-buttons.html">Buttons</a>
-                                </li>
-                                <li>
-                                    <a href="ui-card.html">Card</a>
-                                </li>
-                                <li>
-                                    <a href="ui-collapse.html">Collapse</a>
-                                </li>
-                                <li>
-                                    <a href="ui-dropdowns.html">Dropdowns</a>
-                                </li>
-                                <li>
-                                    <a href="ui-list-group.html">List Group</a>
-                                </li>
-                                <li>
-                                    <a href="ui-modal.html">Modal</a>
-                                </li>
-                                <li>
-                                    <a href="ui-pagination.html">Pagination</a>
-                                </li>
-                                <li>
-                                    <a href="ui-popovers.html">Popovers</a>
-                                </li>
-                                <li>
-                                    <a href="ui-progress.html">Progress</a>
-                                </li>
-                                <li>
-                                    <a href="ui-spinners.html">Spinners</a>
-                                </li>
-                                <li>
-                                    <a href="ui-toast.html">Toast</a>
-                                </li>
-                                <li>
-                                    <a href="ui-tooltips.html">Tooltips</a>
+                                    <a href="">Lista de Alunos</a>
                                 </li>
                             </ul>
                         </li>
+
+                        <!-- <li class="sidebar-title">
+                            Turmas
+                        </li> -->
                         <li>
-                            <a href="#"><i class="material-icons">card_giftcard</i>Extended<i class="material-icons has-sub-menu">add</i></a>
+                            <a href="#"><i class="material-icons">text_format</i>Turmas<i class="material-icons has-sub-menu">add</i></a>
                             <ul class="sub-menu">
                                 <li>
-                                    <a href="extended-select2.html">Select2</a>
+                                    <a href="">Cadastrar Turmas</a>
                                 </li>
                                 <li>
-                                    <a href="extended-datatables.html">Data Tables</a>
+                                    <a href=">">Lista de Turmas</a>
                                 </li>
-                                <li>
-                                    <a href="extended-blockui.html">Block UI</a>
-                                </li>
-                                <li>
-                                    <a href="extended-session.html">Session Timeout</a>
-                                </li>
-                                <li>
-                                    <a href="extended-tree.html">Tree View</a>
-                                </li>
+                                <!-- <li>
+                                    <a href="styles-tables.html">Cadastro de Turmas</a>
+                                </li> -->
+                                <!-- <li>
+                                    <a href="styles-icons.html">Icons</a>
+                                </li> -->
                             </ul>
                         </li>
+
+                        <!-- <li class="sidebar-title">
+                            Documentos
+                        </li> -->
                         <li>
-                            <a href="charts.html"><i class="material-icons">bar_chart</i>Charts</a>
-                        </li>
-                        <li>
-                            <a href="forms.html"><i class="material-icons">input</i>Forms</a>
-                        </li>
-                        <li class="sidebar-title">
-                            Other
-                        </li>
-                        <li>
-                            <a href=""><i class="material-icons">star_border</i>Pages<i class="material-icons has-sub-menu">add</i></a>
+                            <a href="#"><i class="material-icons">text_format</i>Documentos<i class="material-icons has-sub-menu">add</i></a>
                             <ul class="sub-menu">
                                 <li>
-                                    <a href="404.html">404</a>
+                                    <a href="">Adicionar Documentos</a>
                                 </li>
                                 <li>
-                                    <a href="500.html">500</a>
+                                    <a href="">Adicionar Documento ao Aluno</a>
                                 </li>
                                 <li>
-                                    <a href="sign-in.html">Sign In</a>
-                                </li>
-                                <li>
-                                    <a href="sign-up.html">Sign Up</a>
+                                    <a href=">">Listar Documentos</a>
                                 </li>
                             </ul>
                         </li>
+
+                        <!-- <li class="sidebar-title">
+                            Matriculas
+                        </li> -->
                         <li>
-                            <a href="#"><i class="material-icons">bookmark_border</i>Documentation</a>
+                            <a href="#"><i class="material-icons">text_format</i>Matriculas<i class="material-icons has-sub-menu">add</i></a>
+                            <ul class="sub-menu">
+                                <li>
+                                    <a href="">Matricular Aluno</a>
+                                </li>
+                                <li>
+                                    <a href="">Lista de Matriculas</a>
+                                </li>
+                            </ul>
                         </li>
+
+                        <!-- <li class="sidebar-title">
+                            Contratos
+                        </li> -->
                         <li>
-                            <a href="#"><i class="material-icons">access_time</i>Change Log</a>
+                            <a href="#"><i class="material-icons">text_format</i>Contratos<i class="material-icons has-sub-menu">add</i></a>
+                            <ul class="sub-menu">
+                                <li>
+                                    <a href="styles-typography.html">Adicionar Contrato</a>
+                                </li>
+                                <li>
+                                    <a href="styles-typography.html">Lista de Contratos</a>
+                                </li>
+                                <li>
+                                    <a href="styles-typography.html">Relatório de Contratos</a>
+                                </li>
+                            </ul>
                         </li>
-                    </ul>
+
+                        <!-- <li class="sidebar-title">
+                            Relatórios
+                        </li> -->
+                        <li>
+                            <a href="#"><i class="material-icons">text_format</i>Relatórios<i class="material-icons has-sub-menu">add</i></a>
+                            <ul class="sub-menu">
+                                <li>
+                                    <a href="styles-typography.html">Filtrar Relatórios</a>
+                                </li>
+                                
+                            </ul>
+                        </li>
+
+                        <!-- <li class="sidebar-title">
+                            Email Marketing
+                        </li> -->
+                        <li>
+                            <a href="#"><i class="material-icons">text_format</i>Peças Promocionais<i class="material-icons has-sub-menu">add</i></a>
+                            <ul class="sub-menu">
+                                <li>
+                                    <a href="styles-typography.html">Adicionar</a>
+                                </li>
+                            </ul>
+                        </li>
+
+                        <!-- <li class="sidebar-title">
+                            Portal do Aluno
+                        </li> -->
+                        <li>
+                            <a href="#"><i class="material-icons">text_format</i>Portal do Aluno<i class="material-icons has-sub-menu">add</i></a>
+                            <ul class="sub-menu">
+                                <li>
+                                    <a href="styles-typography.html">Adicionar Comunicado</a>
+                                </li>
+                                <li>
+                                    <a href="styles-typography.html">Lista de Comunicados</a>
+                                </li>
+                            </ul>
+                        </li>
+
+                        <!-- <li class="sidebar-title">
+                            Livro de Ocorrencia
+                        </li> -->
+                        <li>
+                            <a href="#"><i class="material-icons">text_format</i>Livro de Ocorrência<i class="material-icons has-sub-menu">add</i></a>
+                            <ul class="sub-menu">
+                                <li>
+                                    <a href="styles-typography.html">Ocorrência do Aluno</a>
+                                </li>
+                                <li>
+                                    <a href="styles-typography.html">Ocorrência da Turma</a>
+                                </li>
+                            </ul>
+                        </li>
+
+                        <!-- <li class="sidebar-title">
+                            Calendario da Turma
+                        </li> -->
+                        <li>
+                            <a href="#"><i class="material-icons">text_format</i>Calendario da Turma<i class="material-icons has-sub-menu">add</i></a>
+                            <ul class="sub-menu">
+                                <li>
+                                    <a href="styles-typography.html">Lista de Turmas</a>
+                                </li>
+                            </ul>
+                        </li>
+                        
+                        <!-- <li class="sidebar-title">
+                            Cadastros
+                        </li> -->
+                        <li>
+                            <a href="#"><i class="material-icons">text_format</i>Cadastros Gerais<i class="material-icons has-sub-menu">add</i></a>
+                            <ul class="sub-menu">
+                                <li>
+                                    <a href="">Cadastrar Unidades</a>
+                                </li>
+                                <li>
+                                    <a href="">Cadastrar Professor</a>
+                                </li>
+                                <li>
+                                    <a href="">Cadastrar Tutor</a>
+                                </li>
+                                <li>
+                                    <a href="">Cadastrar Coordenador</a>
+                                </li>
+                            </ul>
+                        </li>
+
+                        
+
+                        
+                    </ul> 
                 </div>
             </div>
             <div class="page-container">
@@ -209,7 +286,7 @@
                                     <a class="dropdown-item" href="#">Settings &amp Privacy</a>
                                     <a class="dropdown-item" href="#">Switch Account</a>
                                     <div class="dropdown-divider"></div>
-                                    <a class="dropdown-item" href="#">Log out</a>
+                                    <a class="dropdown-item" href="<?php echo BASE_URL.'secertaria/logout';?>">Log out</a>
                                 </div>
                             </li>
                             <li class="nav-item">
@@ -224,14 +301,9 @@
                         </ul>
                         <div class="collapse navbar-collapse" id="navbarNav">
                             <ul class="navbar-nav">
+                                
                                 <li class="nav-item">
-                                    <a href="#" class="nav-link">Projects</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="#" class="nav-link">Tasks</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="#" class="nav-link">Reports</a>
+                                    <a href="<?php echo BASE_URL.'secretaria/logout';?>" class="nav-link">Sair</a>
                                 </li>
                             </ul>
                         </div>
@@ -254,7 +326,9 @@
                         </nav>
                         <div class="page-options">
                             <a href="#" class="btn btn-secondary">Settings</a>
-                            <a href="#" class="btn btn-primary">Upgrade</a>
+                            <?php if(isset($viewData['btnAction'])):?>
+                                <a href="<?php echo $viewData['btnAction']['link'];?>" class="btn btn-primary"><?php echo $viewData['btnAction']['title'];?></a>
+                            <?php endif;?>
                         </div>
                     </div>
                     
@@ -266,7 +340,7 @@
                 <div class="page-footer">
                     <div class="row">
                         <div class="col-md-12">
-                            <span class="footer-text"><?php echo date('Y') ?> © <a href="https://bckcode.com.br"></a></span>
+                            <span class="footer-text"><?php echo date('Y') ?> © <a href="https://bckcode.com.br">BCKCode</a></span>
                         </div>
                     </div>
                 </div>

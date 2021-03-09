@@ -1,4 +1,3 @@
-<?php require_once(APPPATH.'views/comuns/secretaria/header.php'); ?>
 <div class="page-container">
     <div class="page-header">
         <nav class="navbar navbar-expand">
@@ -115,4 +114,3 @@
             
         </div>
     </div>
-<?php require_once(APPPATH.'views/comuns/secretaria/footer.php'); ?>
