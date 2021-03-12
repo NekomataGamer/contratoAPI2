@@ -25,6 +25,8 @@
         <link href="<?php echo BASE_URL;?>assets/css/dark_theme.css" rel="stylesheet">
         <link href="<?php echo BASE_URL;?>assets/css/custom.css" rel="stylesheet">
 
+        <link rel="stylesheet" href="cdn.jsdelivr.net/npm/@sweetalert2/theme-dark@4/dark.css">
+
         <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
         <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
         <!--[if lt IE 9]>
@@ -49,21 +51,7 @@
                         <li class="active-page">
                             <a href="<?php echo BASE_URL.'secretaria/';?>" class="active"><i class="material-icons-outlined">dashboard</i>Dashboard</a>
                         </li>
-                        <!-- <li>
-                            <a href="mailbox.html"><i class="material-icons-outlined">inbox</i>Mailbox</a>
-                        </li>
-                        <li>
-                            <a href="profile.html"><i class="material-icons-outlined">account_circle</i>Profile</a>
-                        </li>
-                        <li>
-                            <a href="file-manager.html"><i class="material-icons">cloud_queue</i>File Manager</a>
-                        </li>
-                        <li>
-                            <a href="calendar.html"><i class="material-icons-outlined">calendar_today</i>Calendar</a>
-                        </li>
-                        <li>
-                            <a href="todo.html"><i class="material-icons">done</i>Todo</a>
-                        </li> -->
+
                         <li class="sidebar-title">
                             Menu
                         </li>
@@ -76,12 +64,6 @@
                                 <li>
                                     <a href="">Ver Diciplinas</a>
                                 </li>
-                                <!-- <li>
-                                    <a href="styles-tables.html">Cadastro de Turmas</a>
-                                </li>
-                                <li>
-                                    <a href="styles-icons.html">Icons</a>
-                                </li> -->
                             </ul>
                         </li>
 
@@ -91,9 +73,6 @@
                         <li>
                             <a href="#"><i class="material-icons">text_format</i>Alunos<i class="material-icons has-sub-menu">add</i></a>
                             <ul class="sub-menu">
-                                <li>
-                                    <a href="">Cadastrar Aluno</a>
-                                </li>
                                 <li>
                                     <a href="">Lista de Alunos</a>
                                 </li>
@@ -107,17 +86,8 @@
                             <a href="#"><i class="material-icons">text_format</i>Turmas<i class="material-icons has-sub-menu">add</i></a>
                             <ul class="sub-menu">
                                 <li>
-                                    <a href="">Cadastrar Turmas</a>
-                                </li>
-                                <li>
                                     <a href=">">Lista de Turmas</a>
                                 </li>
-                                <!-- <li>
-                                    <a href="styles-tables.html">Cadastro de Turmas</a>
-                                </li> -->
-                                <!-- <li>
-                                    <a href="styles-icons.html">Icons</a>
-                                </li> -->
                             </ul>
                         </li>
 
@@ -146,10 +116,7 @@
                             <a href="#"><i class="material-icons">text_format</i>Matriculas<i class="material-icons has-sub-menu">add</i></a>
                             <ul class="sub-menu">
                                 <li>
-                                    <a href="">Matricular Aluno</a>
-                                </li>
-                                <li>
-                                    <a href="">Lista de Matriculas</a>
+                                    <a href="<?php echo BASE_URL.'secretaria/matriculas';?>">Lista de Matriculas</a>
                                 </li>
                             </ul>
                         </li>
@@ -278,8 +245,8 @@
                             </li>
                             <li class="nav-item nav-profile dropdown">
                                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    <img src="<?php echo BASE_URL;?>assets/images/avatars/profile-image-1.png" alt="profile image">
-                                    <span>Nancy Moore</span><i class="material-icons dropdown-icon">keyboard_arrow_down</i>
+                                    <img src="<?php echo BASE_URL;?>assets/images/avatars/profile-image-2.png" alt="profile image">
+                                    <span>Alison Bucker</span><i class="material-icons dropdown-icon">keyboard_arrow_down</i>
                                 </a>
                                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                                     <a class="dropdown-item" href="#">Calendar<span class="badge badge-pill badge-info float-right">2</span></a>
@@ -325,9 +292,14 @@
                             </ol>
                         </nav>
                         <div class="page-options">
-                            <a href="#" class="btn btn-secondary">Settings</a>
-                            <?php if(isset($viewData['btnAction'])):?>
+                            <?php if(isset($viewData['btnSecondary'])):?>
+                                <button type="button" class="btn btn-secondary" data-toggle="modal" data-target="#<?php echo $viewData['btnSecondary']['id'];?>" data-whatever="@mdo"><?php echo $viewData['btnSecondary']['title'];?></button>
+                            <?php endif;?>
+                            <?php if(isset($viewData['btnAction']) && !isset($viewData['btnModal'])):?>
                                 <a href="<?php echo $viewData['btnAction']['link'];?>" class="btn btn-primary"><?php echo $viewData['btnAction']['title'];?></a>
+                            <?php endif;?>
+                            <?php if(isset($viewData['btnModal']) && !isset($viewData['btnAction'])):?>
+                                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#<?php echo $viewData['btnModal']['id'];?>" data-whatever="@mdo"><?php echo $viewData['btnModal']['title'];?></button>
                             <?php endif;?>
                         </div>
                     </div>
@@ -349,6 +321,7 @@
         
         <!-- Javascripts -->
         <script src="<?php echo BASE_URL;?>assets/plugins/jquery/jquery-3.4.1.min.js"></script>
+        <script src="//cdn.jsdelivr.net/npm/sweetalert2@10"></script>
         <script src="<?php echo BASE_URL;?>assets/plugins/bootstrap/popper.min.js"></script>
         <script src="<?php echo BASE_URL;?>assets/plugins/bootstrap/js/bootstrap.min.js"></script>
         <script src="<?php echo BASE_URL;?>assets/plugins/jquery-slimscroll/jquery.slimscroll.min.js"></script>
@@ -362,5 +335,6 @@
         <script src="<?php echo BASE_URL;?>assets/plugins/flot/jquery.flot.tooltip.min.js"></script>
         <script src="<?php echo BASE_URL;?>assets/js/connect.min.js"></script>
         <script src="<?php echo BASE_URL;?>assets/js/pages/dashboard.js"></script>
+        <script> const base_url = '<?php echo BASE_URL;?>'; </script>
     </body>
 </html>

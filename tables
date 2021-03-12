@@ -1,3 +1,0 @@
-table cobrancas (tabela que guarda as cobranças quandidade de parcelas, valor das parcelas, vencimento do boleto, parcelas restantes, id do cliente, id da empresa);
-
- table cobranças_filas (tabela que guarda as cobranças que serao geradas naquele dia. Um script pega)

@@ -31,7 +31,7 @@ class Secretaria extends Model{
     }
 
     public function cadastrarCurso($nome_curso, $abrev, $area, $curso_nos_documentos, $cod_inep, $cod_modalidade_inep, $cod_polo_de_ed_dist_inep, $grade_unica, $grade_unica_excecao, $educacao_a_distancia, $coordenador_curso, $coordenador_estagio, $titulo, $titulacao, $eixo_tecnologico, $area_conhecimento, $area_concentracao, $habilitacao, $autorizacao, $reconhecimento, $renovacao_reconhecimento, $amparo_legal, $perfil_profissional, $observacao, $prefixo_curso, $mostrar_faltas, $separar_garga_horaria_pratica, $separar_carga_horaria_dispensa, $mostrar_ano_semestre, $mostrar_titulo_periodo, $subistituir_dispensa, $subistituir_pendente, $nome_ch, $abrev_ch, $nome_ch_anual, $abrev_ch_anual, $curso_equival, $observacao_historico, $periodo_letivo, $desbloquear_prof){
-        $sql = "INSERT INTO cursos SET id_coordenador = :id_coordenador, nome_curso = :nome_curso, abrev = :abrev, area = :area, curso_no_doc = :curso_no_doc, cod_inep = :cod_inep, cod_mod_inep = :cod_mod_inep, cod_polo_ed_dist = :cod_polo_ed_dist, grade_unica = :grade_unica, grade_unica_excecao = :grade_unica_excecao, educacao_distancia = :educacao_distancia, titulo = :titulo, titulacao = :titulacao, eixo_tecnologico = :eixo_tecnologico, area_conhecimento = :area_conhecimento, area_concentracao = :area_concentracao, habilitacao = :habilitacao, autorizacao = :autorizacao, reconhecimento = :reconhecimento, renovacao_conhecimento = :renovacao_conhecimento, amparo_legal = :amparo_legal, perfil_profissional = :perfil_profissional, observacao = :observacao, prefixo_curso = :prefixo_curso, mostrar_faltas = :mostrar_faltas, separar_carg_hor_pratica = :separar_carg_hor_pratica, separar_carg_hor_dispensa = :separar_carg_hor_dispensa, mostrar_ano_semestre = :mostrar_ano_semestre, mostrar_titulo_periodo = :mostrar_titulo_periodo, substituir_dispensa_aproveitamento = :substituir_dispensa_aproveitamento, substituir_pendente_acursar = :substituir_pendente_acursar, nome_ch = :nome_ch, abrev_ch = :abrev_ch, nome_ch_anual = :nome_ch_anual, abrev_ch_anual = :abrev_ch_anual, id_curso_equivalencia = :id_curso_equivalencia, observacao_historico = :observacao_historico, periodo_letivo_encerrado = :periodo_letivo_encerrado, desbloq_prof_ano_let_1 = :desbloq_prof_ano_let_1";
+        $sql = "INSERT INTO cursos SET id_coordenador = :id_coordenador, nome_curso = :nome_curso, abrev = :abrev, area = :area, curso_no_doc = :curso_no_doc, cod_inep = :cod_inep, cod_mod_inep = :cod_mod_inep, cod_polo_ed_dist = :cod_polo_ed_dist, grade_unica = :grade_unica, grade_unica_excecao = :grade_unica_excecao, educacao_distancia = :educacao_distancia, titulo = :titulo, titulacao = :titulacao, eixo_tecnologico = :eixo_tecnologico, area_conhecimento = :area_conhecimento, area_concentracao = :area_concentracao, habilitacao = :habilitacao, autorizacao = :autorizacao, reconhecimento = :reconhecimento, renovacao_conhecimento = :renovacao_conhecimento, amparo_legal = :amparo_legal, perfil_profissional = :perfil_profissional, observacao = :observacao, prefixo_curso = :prefixo_curso, mostrar_faltas = :mostrar_faltas, separar_carg_hor_pratica = :separar_carg_hor_pratica, separar_carg_hor_dispensa = :separar_carg_hor_dispensa, mostrar_ano_semestre = :mostrar_ano_semestre, mostrar_titulo_periodo = :mostrar_titulo_periodo, substituir_dispensa_aproveitamento = :substituir_dispensa_aproveitamento, substituir_pendente_acursar = :substituir_pendente_acursar, nome_ch = :nome_ch, abrev_ch = :abrev_ch, nome_ch_anual = :nome_ch_anual, abrev_ch_anual = :abrev_ch_anual, id_curso_equivalencia = :id_curso_equivalencia, observacao_historico = :observacao_historico, periodo_letivo_encerrado = :periodo_letivo_encerrado, desbloq_prof_ano_let_1 = :desbloq_prof_ano_let_1, id_inst = :id_inst";
         $sql = $this->db->prepare($sql);
         $sql->bindValue(':id_coordenador', $coordenador_curso);
         $sql->bindValue(':nome_curso', $nome_curso);
@@ -72,11 +72,12 @@ class Secretaria extends Model{
         $sql->bindValue(':observacao_historico', $observacao_historico);
         $sql->bindValue(':periodo_letivo_encerrado', $periodo_letivo);
         $sql->bindValue(':desbloq_prof_ano_let_1', $desbloquear_prof);
+        $sql->bindValue(':id_inst', $_SESSION['secretaria']);
         $sql->execute();
 
         $idCurso = $this->db->lastInsertId();
 
-        header('Location: '.BASE_URL.'secretaria/editarCurso/'.$idCurso); 
+        header('Location: '.BASE_URL.'secretaria/editarCurso/'.$idCurso.'?success=true'); 
     }
 
     public function getCursoInfo($idCurso){
@@ -89,6 +90,49 @@ class Secretaria extends Model{
 
         if($sql->rowCount() > 0){
             $array = $sql->fetch();
+        }
+
+        return $array;
+    }
+
+    public function getFromTable($table){
+        $array = array();
+
+        $sql = "SELECT * FROM $table";
+        $sql = $this->db->query($sql);
+
+        if($sql->rowCount() > 0){
+            $array = $sql->fetchAll();
+        }
+
+        return $array;
+    }
+
+    public function getFromTableWhere($table, $where){
+        $array = array();
+
+        $sql = "SELECT * FROM $table WHERE $where";
+        $sql = $this->db->query($sql);
+
+        if($sql->rowCount() > 0){
+            $array = $sql->fetchAll();
+        }
+
+        return $array;
+    }
+
+    public function getPeriodos($id_curso){
+        $array = array();
+
+        $sql = "SELECT * FROM periodos WHERE  id_curso = $id_curso ORDER BY sequencia ASC";
+        $sql = $this->db->query($sql);
+        
+        if($sql->rowCount() > 0){
+            $array = $sql->fetchAll();
+
+            for($q=0;$q<count($array);$q++){
+                $array[$q]['curso'] = $this->getFromTableWhere('cursos', 'id ='.$id_curso);
+            }
         }
 
         return $array;

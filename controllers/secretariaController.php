@@ -63,6 +63,8 @@ class secretariaController extends Controller{
             'title' => 'Adicionar Curso'
         );
 
+        $dados['cursos'] = $s->getFromTable('cursos');
+
         $this->loadTemplate('listar_curso', $dados, 'secretaria');
     }
 
@@ -119,6 +121,9 @@ class secretariaController extends Controller{
 
             $s->cadastrarCurso($nome_curso, $abrev, $area, $curso_nos_documentos, $cod_inep, $cod_modalidade_inep, $cod_polo_de_ed_dist_inep, $grade_unica, $grade_unica_excecao, $educacao_a_distancia, $coordenador_curso, $coordenador_estagio, $titulo, $titulacao, $eixo_tecnologico, $area_conhecimento, $area_concentracao, $habilitacao, $autorizacao, $reconhecimento, $renovacao_conhecimento, $amparo_legal, $perfil_profissional, $observacao, $prefixo_curso, $mostrar_faltas, $separar_garga_horaria_pratica, $separar_carga_horaria_dispensa, $mostrar_ano_semestre, $mostrar_titulo_periodo, $subistituir_dispensa, $subistituir_pendente, $nome_ch, $abrev_ch, $nome_ch_anual, $abrev_ch_anual, $curso_equival, $observacao_historico, $periodo_letivo, $desbloquear_prof);
         }
+
+        $dados['coordenadores'] = $s->getFromTable('coordenadores');
+        $dados['cursos'] = $s->getFromTable('cursos');
         
         $this->loadTemplate('cadastrar_curso', $dados, 'secretaria');
     }
@@ -172,16 +177,44 @@ class secretariaController extends Controller{
             $periodo_letivo = addslashes($_POST['periodo_letivo1']);
             $desbloquear_prof = addslashes($_POST['desbloquear_professores']);
 
-            
-
             if($s->editarCurso($nome_curso, $abrev, $area, $curso_nos_documentos, $cod_inep, $cod_modalidade_inep, $cod_polo_de_ed_dist_inep, $grade_unica, $grade_unica_excecao, $educacao_a_distancia, $coordenador_curso, $coordenador_estagio, $titulo, $titulacao, $eixo_tecnologico, $area_conhecimento, $area_concentracao, $habilitacao, $autorizacao, $reconhecimento, $renovacao_conhecimento, $amparo_legal, $perfil_profissional, $observacao, $prefixo_curso, $mostrar_faltas, $separar_garga_horaria_pratica, $separar_carga_horaria_dispensa, $mostrar_ano_semestre, $mostrar_titulo_periodo, $subistituir_dispensa, $subistituir_pendente, $nome_ch, $abrev_ch, $nome_ch_anual, $abrev_ch_anual, $curso_equival, $observacao_historico, $periodo_letivo, $desbloquear_prof, $id_curso)){
                 $dados['success'] = true;
             }
         }
 
+        $dados['btnModal'] = array(
+            'title' => 'Adicionar Período',
+            'id' => 'addPeriodo'
+        );
+
+        $dados['btnSecondary'] = array(
+            'title' => 'Listar Períodos',
+            'id' => 'listPeriodo'
+        );
+
         $dados['cursoInfo'] = $s->getCursoInfo($id_curso);
+        $dados['coordenadores'] = $s->getFromTable('coordenadores');
+        $dados['cursos'] = $s->getFromTable('cursos');
+        $dados['periodos'] = $s->getPeriodos($id_curso);
         
         $this->loadTemplate('editar_curso', $dados, 'secretaria');
+    }
+
+    public function matriculas(){
+        $dados = array();
+        $this->needLogin(true);
+        $s = new Secretaria();
+
+        $dados['btnAction'] = array(
+            'title' => 'Matricular Aluno',
+            'link' => 'matricularAluno/'
+        );
+
+        $dados['title'] = 'Listar Matriculas';
+        $dados['matriculas'] = array();
+        
+
+        $this->loadTemplate('listar_matriculas', $dados, 'secretaria');
     }
 
     public function matricularAluno(){
@@ -191,12 +224,9 @@ class secretariaController extends Controller{
 
         $dados['title'] = 'Editar Curso';
 
-        $dados = array();
-        if(!empty($_POST)){
-            echo '<pre>';
-            print_r($_POST);
-            exit;
-        }
+
+        
+        $dados['cursos'] = $s->getFromTable('cursos');
 
         $this->loadTemplate('matricular_aluno', $dados, 'secretaria');
     }

@@ -24,18 +24,20 @@
                                             <tr>
                                         </thead>
                                         <tbody>
-                                            <tr>
-                                                <td>aaaa</td>
-                                                <td>System Architect</td>
-                                                <td>Edinburgh</td>
-                                                <td>61</td>
-                                                <td>2011/04/25</td>
-                                                <td>
-                                                    <!-- <a href="#" class="btn btn-outline-primary btn-xs"><span class="material-icons">remove_red_eye</span></a> -->
-                                                    <a href="<?php echo '';?>" class="btn btn-outline-primary btn-xs"><span class="material-icons">edit</span></a>
-                                                    <a href="#" class="btn btn-outline-danger btn-xs" onclick="return confirm('Tem certeza que deseja excluir este curso?')"><span class="material-icons">delete</span></a>
-                                                </td>
-                                            </tr>
+                                            <?php foreach($cursos as $curso):?>
+                                                <tr>
+                                                    <td><?php echo $curso['nome_curso'];?></td>
+                                                    <td><?php echo $curso['abrev'];?></td>
+                                                    <td><?php echo $curso['cod_inep'];?></td>
+                                                    <td><?php echo $curso['id_coordenador'];?></td>
+                                                    <td><?php echo $curso['area'];?></td>
+                                                    <td>
+                                                        <!-- <a href="#" class="btn btn-outline-primary btn-xs"><span class="material-icons">remove_red_eye</span></a> -->
+                                                        <a href="<?php echo BASE_URL.'secretaria/editarCurso/'.$curso['id'];?>" class="btn btn-outline-primary btn-xs"><span class="material-icons">edit</span></a>
+                                                        <a href="#" class="btn btn-outline-danger btn-xs" onclick="return confirm('Tem certeza que deseja excluir este curso?')"><span class="material-icons">delete</span></a>
+                                                    </td>
+                                                </tr>
+                                            <?php endforeach;?>
                                         </tbody>
                                         <tfoot>
                                             <tr>

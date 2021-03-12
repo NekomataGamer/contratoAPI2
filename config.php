@@ -1,5 +1,6 @@
 <?php
 require 'environment.php';
+require 'vendor/autoload.php';
 
 global $config;
 global $db;

@@ -108,25 +108,19 @@
                         <!-- <p>Area destinada ao cadastro de Alunos. </p> -->
                         
                         <div class="form-row">
-                            <div class="form-group col-md-6">
+                            <div class="form-group col-md-12">
                                 <label for="exampleInputEmail1">Curso </label>
-                                <select id="inputState" class="form-control custom-select" name="curso">
+                                <select id="inputCursos" class="form-control custom-select" name="curso">
                                     <option value="">Selecionar Curso</option>
-                                    <!-- Foreach com os cursos -->
+                                    <?php foreach($cursos as $curso):?>
+                                        <option value="<?php echo $curso['id'];?>"><?php echo $curso['nome_curso'];?></option>
+                                    <?php endforeach;?>
                                 </select>
                             </div>
 
-                            <div class="form-group col-md-6">
-                                <label for="exampleInputEmail1">Período </label>
-                                <select id="inputState" class="form-control custom-select" name="periodo">
-                                    <option value="">Selecionar Período</option>
-                                    <!-- Foreach com os períodos -->
-                                </select>
-                            </div>
-
-                            <div class="form-group col-md-2">
+                            <div class="form-group col-md-12" id="divInpTurmas" style="display:none;">
                                 <label for="exampleInputEmail1">Turma </label>
-                                <select id="inputState" class="form-control custom-select" name="turma">
+                                <select id="inputTurmas" class="form-control custom-select" name="turma">
                                     <option value="">Selecionar Período</option>
                                     <!-- Foreach com os períodos -->
                                 </select>
@@ -1701,6 +1695,9 @@
     
 </div>
 </div>
+
+<script src="<?php echo BASE_URL;?>assets/plugins/jquery/jquery-3.4.1.min.js"></script>
+<script src="<?php echo BASE_URL;?>assets/js/ajax.js"></script>
 
 <script>
     $(document).ready(function(){

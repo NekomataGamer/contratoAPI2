@@ -6,8 +6,11 @@
             <div class="card-body">
                 <h5 class="card-title">Editar Curso</h5>
                 <p>Area destinada a edição de cursos. </p>
-                <?php if(isset($success) && $success === true):?>
-                    <div class="alert alert-success">Sucesso</div>
+                <?php if(isset($_GET['success']) && $_GET['success'] == 'true'):?>
+                    <div class="alert alert-success">Curso Editado</div>
+                <?php endif;?>
+                <?php if(isset($success) && $success == 'true'):?>
+                    <div class="alert alert-success">Curso Editado</div>
                 <?php endif;?>
                 <form method="POST">
                     <div class="form-row">
@@ -78,14 +81,18 @@
                             <label for="exampleInputEmail1">Coordenador do Curso</label>
                             <select id="inputState" class="form-control custom-select" name="coordenador_curso">
                                 <option value="">Selecionar</option>
-                                <!-- Foreach com os coordenadores -->
+                                <?php foreach($coordenadores as $coordenador):?>
+                                    <option value="<?php echo $coordenador['id'];?>"><?php echo $coordenador['nome'];?></option>
+                                <?php endforeach;?>
                             </select>
                         </div>
                         <div class="form-group col-md-3">
                             <label for="exampleInputEmail1">Coordenador do Estágio</label>
                             <select id="inputState" class="form-control custom-select" name="coordenador_estagio">
                                 <option value="">Selecionar</option>
-                                <!-- Foreach com os coordenadores -->
+                                <?php foreach($coordenadores as $coordenador):?>
+                                    <option value="<?php echo $coordenador['id'];?>"><?php echo $coordenador['nome'];?></option>
+                                <?php endforeach;?>
                             </select>
                         </div>
                         <div class="form-group col-md-2">
@@ -240,11 +247,14 @@
                             <label for="exampleInputEmail1">Abreviatura da CH Anual</label>
                             <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name="abrev_ch_anual"value="<?php echo (!empty($cursoInfo['abrev_ch_anual'])?$cursoInfo['abrev_ch_anual']:''); ?>">
                         </div>
+
                         <div class="form-group col-md-2">
                             <label for="exampleInputEmail1">Curso Equivalência</label>
                             <select id="inputState" class="form-control custom-select" name="curso_equival">
-                                <option value="">Selecionar</option>
-                                <!-- Foreach com os Cursos -->
+                                <option value="">Selecionar</option>   
+                                <?php foreach($cursos as $curso):?>
+                                    <option <?php echo ($curso['id'] == $cursoInfo['id_curso_equivalencia'])?'selected':''?> value="<?php echo $curso['id'];?>"><?php echo $curso['nome_curso'];?></option>
+                                <?php endforeach;?>
                             </select>
                         </div>
                     </div>
@@ -284,3 +294,72 @@
         </div>
     </div>
 </div>
+
+<div class="modal fade" id="<?php echo $btnModal['id'];?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel"> Adicionar Períodos </h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form id="formAddPeriodo">
+            <input type="hidden" name="id_curso" value="<?php echo $cursoInfo['id'];?>">
+          <div class="form-group">
+            <label for="recipient-name" class="col-form-label">Titulo:</label>
+            <input type="text" class="form-control" id="recipient-name" name="titulo_2">
+          </div>
+          <div class="form-group">
+            <label for="message-text" class="col-form-label">Sequencia:</label>
+            <input type="number" class="form-control" id="recipient-name" name="sequencia_2">
+          </div>
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
+            <input type="submit" value="Adicionar" class="btn btn-primary">
+            <!-- <button type="button" class="btn btn-primary">Adicionar</button> -->
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade bd-example-modal-lg" id="<?php echo $btnSecondary['id'];?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel"> <?php echo $btnSecondary['title'];?> </h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+      <table id="complex-header" class="display" style="width:100%">
+            <thead>
+                <tr>
+                    <th rowspan="2">Titulo</th>
+                    <th colspan="2">Curso</th>
+                    <th colspan="3"></th>
+                </tr>
+                
+            </thead>
+            <tbody>
+                <?php foreach($periodos as $periodo):?>
+                    <tr>
+                        <td><?php echo $periodo['titulo'];?></td>
+                        <td><?php echo $periodo['curso'][0]['nome_curso'];?></td>
+                        <td>
+                            remover
+                        </td>
+                    </tr>
+                <?php endforeach;?>
+            </tbody>
+        <table>
+    </div>
+  </div>
+</div>
+
+<script src="<?php echo BASE_URL;?>assets/plugins/jquery/jquery-3.4.1.min.js"></script>
+<script src="<?php echo BASE_URL;?>assets/js/ajax.js"></script>

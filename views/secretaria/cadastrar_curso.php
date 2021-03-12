@@ -75,14 +75,18 @@
                             <label for="exampleInputEmail1">Coordenador do Curso</label>
                             <select id="inputState" class="form-control custom-select" name="coordenador_curso">
                                 <option value="">Selecionar</option>
-                                <!-- Foreach com os coordenadores -->
+                                <?php foreach($coordenadores as $coordenador):?>
+                                    <option value="<?php echo $coordenador['id'];?>"><?php echo $coordenador['nome'];?></option>
+                                <?php endforeach;?>
                             </select>
                         </div>
                         <div class="form-group col-md-3">
                             <label for="exampleInputEmail1">Coordenador do Estágio</label>
                             <select id="inputState" class="form-control custom-select" name="coordenador_estagio">
                                 <option value="">Selecionar</option>
-                                <!-- Foreach com os coordenadores -->
+                                <?php foreach($coordenadores as $coordenador):?>
+                                    <option value="<?php echo $coordenador['id'];?>"><?php echo $coordenador['nome'];?></option>
+                                <?php endforeach;?>
                             </select>
                         </div>
                         <div class="form-group col-md-2">
@@ -240,8 +244,10 @@
                         <div class="form-group col-md-2">
                             <label for="exampleInputEmail1">Curso Equivalência</label>
                             <select id="inputState" class="form-control custom-select" name="curso_equival">
-                                <option value="">Selecionar</option>
-                                <!-- Foreach com os Cursos -->
+                                <option value="">Selecionar</option>    
+                                <?php foreach($cursos as $curso):?>
+                                    <option value="<?php echo $curso['id'];?>"><?php echo $curso['nome_curso'];?></option>
+                                <?php endforeach;?>
                             </select>
                         </div>
                     </div>
